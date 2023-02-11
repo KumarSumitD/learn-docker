@@ -1,0 +1,18 @@
+name: Second Test Workflow
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  build-learn-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.13.0
+      - name: Install Dependency
+        run: npm ci
+      - name: Run Test
+        run: npm run test
